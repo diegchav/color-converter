@@ -10,8 +10,8 @@ let win;
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 800,
-    height: 600
+    width: 300,
+    height: 300
   });
 
   // Load react application.

@@ -1,7 +1,9 @@
 import React from 'react';
 
+import './OutputColor.scss';
+
 const OutputColor = ({ color }) => (
-  <div>
+  <div className="output-color">
     <span>{color}</span>
   </div>
 );

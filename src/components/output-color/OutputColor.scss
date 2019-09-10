@@ -1,0 +1,16 @@
+.output-color {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 40vh;
+
+  & span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 60%;
+    border: 1px solid black;
+  }
+}

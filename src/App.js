@@ -12,7 +12,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <InputColor input={INPUT_RGB} />
       <ConvertButton title="Convert" />
       <OutputColor color="#fcba03" />
