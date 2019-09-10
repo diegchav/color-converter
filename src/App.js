@@ -1,6 +1,7 @@
 import React from 'react';
 
 import InputColor from './components/input-color/InputColor';
+import ConvertButton from './components/convert-button/ConvertButton';
 import OutputColor from './components/output-color/OutputColor';
 
 import {
@@ -13,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <InputColor input={INPUT_RGB} />
-      <button>Convert</button>
+      <ConvertButton title="Convert" />
       <OutputColor color="#fcba03" />
     </div>
   );
