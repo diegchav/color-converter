@@ -19,8 +19,7 @@ const InputColor = ({
   bValue,
   onChangeBValue,
   hexValue,
-  onChangeHexValue,
-  onColorConvert
+  onChangeHexValue
 }) => {
   return (
     <div className="input-color">
@@ -38,7 +37,6 @@ const InputColor = ({
             onChangeHexValue={onChangeHexValue}
           />
       }
-      <button onClick={onColorConvert}>Convert</button>
     </div>
   );
 };
@@ -52,8 +50,7 @@ InputColor.propTypes = {
   bValue: PropTypes.string.isRequired,
   onChangeBValue: PropTypes.func.isRequired,
   hexValue: PropTypes.string.isRequired,
-  onChangeHexValue: PropTypes.func.isRequired,
-  onColorConvert: PropTypes.func.isRequired
+  onChangeHexValue: PropTypes.func.isRequired
 };
 
 export default InputColor;

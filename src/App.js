@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
-import InputColor from './components/input-color/InputColor';
-import OutputColor from './components/output-color/OutputColor';
 import ColorSwitcher from './components/color-switcher/ColorSwitcher';
+import InputColor from './components/input-color/InputColor';
+import ConverButton from './components/convert-button/ConvertButton';
+import OutputColor from './components/output-color/OutputColor';
 
 import {
   isHexColorValid,
@@ -18,6 +19,7 @@ import {
 } from './constants';
 
 import './App.css';
+import ConvertButton from './components/convert-button/ConvertButton';
 
 function App() {
   // Generate a random rgb color on load.
@@ -129,8 +131,8 @@ function App() {
         bValue={bValue}
         onChangeBValue={handleChangeBValue}
         hexValue={hexValue}
-        onChangeHexValue={handleChangeHexValue}
-        onColorConvert={handleConvertClick} />
+        onChangeHexValue={handleChangeHexValue} />
+      <ConvertButton onConvertClick={handleConvertClick} />
       <OutputColor
         colorLabel={outputColorLabel}
         colorBg={outputColorBg} />
