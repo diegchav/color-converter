@@ -2,9 +2,9 @@ import React from 'react';
 
 import './ConvertButton.scss';
 
-const ConvertButton = ({ title }) => (
+const ConvertButton = ({ title, onConvertClick }) => (
   <div className="convert-button">
-    <button>{title}</button>
+    <button onClick={() => onConvertClick()}>{title}</button>
   </div>
 );
 

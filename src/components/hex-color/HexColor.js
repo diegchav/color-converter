@@ -2,9 +2,9 @@ import React from 'react';
 
 import InputField from '../input-field/InputField';
 
-const HexColor = ({hex}) => (
+const HexColor = () => (
   <div>
-    <InputField value={hex} />
+    <InputField />
   </div>
 );
 
