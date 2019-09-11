@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import ColorSwitcher from './components/color-switcher/ColorSwitcher';
 import InputColor from './components/input-color/InputColor';
-import ConverButton from './components/convert-button/ConvertButton';
+import ConvertButton from './components/convert-button/ConvertButton';
 import OutputColor from './components/output-color/OutputColor';
 
 import {
@@ -19,7 +19,6 @@ import {
 } from './constants';
 
 import './App.css';
-import ConvertButton from './components/convert-button/ConvertButton';
 
 function App() {
   // Generate a random rgb color on load.

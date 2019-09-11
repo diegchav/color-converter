@@ -3,20 +3,5 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 10vh;
-  color: #ccc;
-
-  span {
-    font-size: 0.6rem;
-    cursor: pointer;
-
-    &:hover {
-      font-size: 0.8rem;
-    }
-  
-    &.active {
-      color: #000;
-      font-weight: bold;
-    }
-  }
+  height: 15vh;
 }

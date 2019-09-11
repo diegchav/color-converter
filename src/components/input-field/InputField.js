@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import TextField from '@material-ui/core/TextField';
+
 import './InputField.scss';
 
 const InputField = ({ value, onChangeValue }) => (
-  <input type="text" value={value} onChange={onChangeValue} />
+  <TextField
+    value={value}
+    variant="outlined"
+    inputProps={{ 'aria-label': 'bare' }}
+    onChange={onChangeValue}
+  />
 );
 
 InputField.propTypes = {
