@@ -30,31 +30,30 @@ function App() {
   const [hexValue, setHexValue] = useState('');
 
   const [inputType, setInputType] = useState(INPUT_RGB);
-  const [invalid, setInvalid] = useState(false);
   // When converting from hex to rgb, output color label and bg will be different.
   const [outputColorLabel, setOutputColorLabel] = useState('#' + hex);
   const [outputColorBg, setOutputColorBg] = useState('#' + hex);
 
   const convertRgbColor = (r, g, b) => {
     if (!isRgbColorValid(r, g, b)) {
-      setInvalid(true);
+      setOutputColorLabel('Invalid');
+      setOutputColorBg('#fff');
     } else {
       const hexColor = '#' + rgbColor2Hex(r, g, b);
       setOutputColorLabel(hexColor);
       setOutputColorBg(hexColor);
-      setInvalid(false);
     }
   };
 
   const convertHexColor = (color) => {
     if (!isHexColorValid(color)) {
-      setInvalid(true);
+      setOutputColorLabel('Invalid');
+      setOutputColorBg('#fff');
     } else {
       const {r, g, b} = hexColor2Rgb(color);
       setOutputColorLabel(`(${r}, ${g}, ${b})`);
       // We assume color is in hex.
       setOutputColorBg('#' + color);
-      setInvalid(false);
     }
   };
 
@@ -82,21 +81,38 @@ function App() {
     }
   };
 
+  const setInvalidInput = () => {
+    setRValue('');
+    setGValue('');
+    setBValue('');
+    setHexValue('');
+    setOutputColorLabel('No color');
+    setOutputColorBg('#fff');
+  };
+
   const handleSwitchColor = (colorType) => {
     if (colorType === INPUT_RGB) {
-      const { r, g, b } = hexColor2Rgb(hexValue);
-      convertRgbColor(r, g, b);
-      setRValue(r);
-      setGValue(g);
-      setBValue(b);
-      setHexValue('');
+      try {
+        const { r, g, b } = hexColor2Rgb(hexValue);
+        convertRgbColor(r, g, b);
+        setRValue(r);
+        setGValue(g);
+        setBValue(b);
+        setHexValue('');
+      } catch (e) {
+        setInvalidInput();
+      }
     } else if (colorType === INPUT_HEX) {
-      const hex = rgbColor2Hex(rValue, gValue, bValue);
-      convertHexColor(hex);
-      setHexValue(hex);
-      setRValue('');
-      setGValue('');
-      setBValue('');
+      try {
+        const hex = rgbColor2Hex(rValue, gValue, bValue);
+        convertHexColor(hex);
+        setHexValue(hex);
+        setRValue('');
+        setGValue('');
+        setBValue('');
+      } catch (e) {
+        setInvalidInput();
+      }
     }
     setInputType(colorType);
   };
@@ -117,8 +133,7 @@ function App() {
         onColorConvert={handleConvertClick} />
       <OutputColor
         colorLabel={outputColorLabel}
-        colorBg={outputColorBg}
-        invalid={invalid} />
+        colorBg={outputColorBg} />
     </div>
   );
 }
