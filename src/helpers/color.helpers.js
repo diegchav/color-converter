@@ -1,5 +1,7 @@
 const isHexValid = (hexColor) => {
-  return !isNaN(parseInt(hexColor, 16));
+  hexColor = hexColor.toLowerCase();
+  const regex = /[0-9abcdef]{6}/;
+  return regex.test(hexColor);
 };
 
 export const isHexColorValid = (hexColor) => {
