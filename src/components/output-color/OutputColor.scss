@@ -1,11 +1,16 @@
 .output-color {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100vw;
   height: 40vh;
 
-  & span {
+  span {
+    margin-bottom: 1.5rem;
+  }
+
+  div {
     display: flex;
     align-items: center;
     justify-content: center;

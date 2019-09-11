@@ -7,7 +7,8 @@ const OutputColor = ({ color, invalid }) => {
 
   return (
     <div className="output-color">
-      <span className={invalid ? 'invalid' : ''}>{invalid ? 'Invalid' : color}</span>
+      <span>{invalid ? 'Invalid' : color}</span>
+      <div className={invalid ? 'invalid' : ''}></div>
     </div>
   );
 };
