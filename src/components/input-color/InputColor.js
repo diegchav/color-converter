@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import RgbColor from '../rgb-color/RgbColor';
 import HexColor from '../hex-color/HexColor';
-import ConvertButton from '../convert-button/ConvertButton';
 
 import './InputColor.scss';
 
@@ -62,7 +61,7 @@ const InputColor = ({ inputType, onColorConvert }) => {
             onChangeHexValue={handleChangeHexValue}
           />
       }
-      <ConvertButton title="Convert" onConvertClick={handleConvertClick} />
+      <button onClick={handleConvertClick}>Convert</button>
     </div>
   );
 };
