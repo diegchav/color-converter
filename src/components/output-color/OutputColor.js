@@ -8,7 +8,9 @@ const OutputColor = ({ color, invalid }) => {
   return (
     <div className="output-color">
       <span>{invalid ? 'Invalid' : color}</span>
-      <div className={invalid ? 'invalid' : ''}></div>
+      <div style={{
+        backgroundColor: invalid ? '#fff' : color
+      }}></div>
     </div>
   );
 };
