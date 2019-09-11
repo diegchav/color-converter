@@ -13,9 +13,9 @@ const OutputColor = ({ color, invalid }) => {
   );
 };
 
-// OutputColor.propTypes = {
-//   color: PropTypes.string.isRequired,
-//   invalid: PropTypes.bool.isRequired
-// };
+OutputColor.propTypes = {
+  color: PropTypes.string.isRequired,
+  invalid: PropTypes.bool.isRequired
+};
 
 export default OutputColor;
