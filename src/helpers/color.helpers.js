@@ -35,6 +35,8 @@ export const hexColor2Rgb = (hexColor) => {
 };
 
 const isRgbValid = (value) => {
+  if (value.length === 0) return false;
+  value = Number(value);
   return (value >= 0 && value <= 255);
 };
 
