@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import RgbColor from '../rgb-color/RgbColor';
@@ -7,45 +7,21 @@ import HexColor from '../hex-color/HexColor';
 import './InputColor.scss';
 
 import {
-  INPUT_RGB,
-  INPUT_HEX
+  INPUT_RGB
 } from '../../constants';
 
-const InputColor = ({ inputType, initialRgb, onColorConvert }) => {
-  
-  const [rValue, setRValue] = useState(initialRgb.r);
-  const [gValue, setGValue] = useState(initialRgb.g);
-  const [bValue, setBValue] = useState(initialRgb.b);
-  const [hexValue, setHexValue] = useState('');
-
-  const handleChangeRValue = (event) => {
-    setRValue(event.target.value);
-  };
-
-  const handleChangeGValue = (event) => {
-    setGValue(event.target.value);
-  };
-
-  const handleChangeBValue = (event) => {
-    setBValue(event.target.value);
-  };
-
-  const handleChangeHexValue = (event) => {
-    setHexValue(event.target.value);
-  };
-
-  const handleConvertClick = () => {
-    if (inputType === INPUT_RGB) {
-      onColorConvert(rValue, gValue, bValue);
-      setRValue('');
-      setGValue('');
-      setBValue('');
-    } else if (inputType === INPUT_HEX) {
-      onColorConvert(hexValue);
-      setHexValue('');
-    }
-  };
-
+const InputColor = ({
+  inputType,
+  rValue,
+  onChangeRValue,
+  gValue,
+  onChangeGValue,
+  bValue,
+  onChangeBValue,
+  hexValue,
+  onChangeHexValue,
+  onColorConvert
+}) => {
   return (
     <div className="input-color">
       {inputType === INPUT_RGB
@@ -53,22 +29,30 @@ const InputColor = ({ inputType, initialRgb, onColorConvert }) => {
             r={rValue}
             g={gValue}
             b={bValue}
-            onChangeRValue={handleChangeRValue}
-            onChangeGValue={handleChangeGValue}
-            onChangeBValue={handleChangeBValue}
+            onChangeRValue={onChangeRValue}
+            onChangeGValue={onChangeGValue}
+            onChangeBValue={onChangeBValue}
           />
         : <HexColor
             value={hexValue}
-            onChangeHexValue={handleChangeHexValue}
+            onChangeHexValue={onChangeHexValue}
           />
       }
-      <button onClick={handleConvertClick}>Convert</button>
+      <button onClick={onColorConvert}>Convert</button>
     </div>
   );
 };
 
 InputColor.propTypes = {
   inputType: PropTypes.string.isRequired,
+  rValue: PropTypes.string.isRequired,
+  onChangeRValue: PropTypes.func.isRequired,
+  gValue: PropTypes.string.isRequired,
+  onChangeGValue: PropTypes.func.isRequired,
+  bValue: PropTypes.string.isRequired,
+  onChangeBValue: PropTypes.func.isRequired,
+  hexValue: PropTypes.string.isRequired,
+  onChangeHexValue: PropTypes.func.isRequired,
   onColorConvert: PropTypes.func.isRequired
 };
 
