@@ -25,7 +25,11 @@ export const hexColor2Rgb = (hexColor) => {
   const g = (parseInt(hexColor, 16) >> 8) & 255;
   const b = parseInt(hexColor, 16) & 255;
 
-  return `${r}, ${g}, ${b}`;
+  return {
+    r: r.toString(),
+    g: g.toString(),
+    b: b.toString()
+  };
 };
 
 const isRgbValid = (value) => {
@@ -50,7 +54,7 @@ const toHex = (value) => {
 */
 export const rgbColor2Hex = (r, g, b) => {
   if (isRgbValid(r) && isRgbValid(g) && isRgbValid(b)) {
-    let hexColor = '#';
+    let hexColor = '';
     hexColor += toHex(r);
     hexColor += toHex(g);
     hexColor += toHex(b);

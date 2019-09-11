@@ -3,20 +3,21 @@ import PropTypes from 'prop-types';
 
 import './OutputColor.scss';
 
-const OutputColor = ({ color, invalid }) => {
+const OutputColor = ({ colorLabel, colorBg, invalid }) => {
 
   return (
     <div className="output-color">
-      <span>{invalid ? 'Invalid' : color}</span>
+      <span>{invalid ? 'Invalid' : colorLabel}</span>
       <div style={{
-        backgroundColor: invalid ? '#fff' : color
+        backgroundColor: invalid ? '#fff' : colorBg
       }}></div>
     </div>
   );
 };
 
 OutputColor.propTypes = {
-  color: PropTypes.string.isRequired,
+  colorLabel: PropTypes.string.isRequired,
+  colorBg: PropTypes.string.isRequired,
   invalid: PropTypes.bool.isRequired
 };
 
