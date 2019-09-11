@@ -50,14 +50,6 @@ function App() {
     }
   };
 
-  const onColorConvert = (...args) => {
-    if (inputType === INPUT_RGB) {
-      convertRgbColor(args[0], args[1], args[2]);
-    } else if (inputType === INPUT_HEX) {
-      convertHexColor(args[0]);
-    }
-  };
-
   const handleChangeRValue = (event) => {
     setRValue(event.target.value);
   };
@@ -76,9 +68,9 @@ function App() {
 
   const handleConvertClick = () => {
     if (inputType === INPUT_RGB) {
-      onColorConvert(rValue, gValue, bValue);
+      convertRgbColor(rValue, gValue, bValue);
     } else if (inputType === INPUT_HEX) {
-      onColorConvert(hexValue);
+      convertHexColor(hexValue);
     }
   };
 
