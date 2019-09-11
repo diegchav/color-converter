@@ -59,3 +59,20 @@ export const rgbColor2Hex = (r, g, b) => {
     throw new Error(`Invalid rgb color: (${r}, ${g}, ${b})`);
   }
 };
+
+const randomRgb = () => {
+  return Math.floor(Math.random() * 255).toString();
+};
+
+/*
+* Generate a random rgb color.
+*
+* Ex: -> {r: 252, g=186, b=3}
+*/
+export const randomRgbColor = () => {
+  return {
+    r: randomRgb(),
+    g: randomRgb(),
+    b: randomRgb()
+  };
+};

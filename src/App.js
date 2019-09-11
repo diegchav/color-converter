@@ -7,7 +7,8 @@ import {
   isHexColorValid,
   hexColor2Rgb,
   isRgbColorValid,
-  rgbColor2Hex
+  rgbColor2Hex,
+  randomRgbColor
 } from './helpers/color.helpers';
 
 import {
@@ -18,9 +19,13 @@ import {
 import './App.css';
 
 function App() {
+  // Generate a random rgb color on load.
+  const initialRgb = randomRgbColor();
+  const { r, g, b } = initialRgb;
+
   const [inputType, setInputType] = useState(INPUT_RGB);
   const [invalid, setInvalid] = useState(false);
-  const [outputColor, setOutputColor] = useState('');
+  const [outputColor, setOutputColor] = useState(rgbColor2Hex(r, g, b));
 
   const convertRgbColor = (r, g, b) => {
     if (!isRgbColorValid(r, g, b)) {
@@ -50,7 +55,7 @@ function App() {
 
   return (
     <div className="app">
-      <InputColor inputType={inputType} onColorConvert={onColorConvert} />
+      <InputColor inputType={inputType} initialRgb={initialRgb} onColorConvert={onColorConvert} />
       <OutputColor color={outputColor} invalid={invalid} />
     </div>
   );

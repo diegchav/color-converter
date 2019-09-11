@@ -11,10 +11,11 @@ import {
   INPUT_HEX
 } from '../../constants';
 
-const InputColor = ({ inputType, onColorConvert }) => {
-  const [rValue, setRValue] = useState('');
-  const [gValue, setGValue] = useState('');
-  const [bValue, setBValue] = useState('');
+const InputColor = ({ inputType, initialRgb, onColorConvert }) => {
+  
+  const [rValue, setRValue] = useState(initialRgb.r);
+  const [gValue, setGValue] = useState(initialRgb.g);
+  const [bValue, setBValue] = useState(initialRgb.b);
   const [hexValue, setHexValue] = useState('');
 
   const handleChangeRValue = (event) => {
