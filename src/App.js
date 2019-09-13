@@ -10,7 +10,9 @@ import {
   hexColor2Rgb,
   isRgbColorValid,
   rgbColor2Hex,
-  randomRgbColor
+  randomRgbColor,
+  isHexValid,
+  isRgbValid
 } from './helpers/color.helpers';
 
 import {
@@ -59,19 +61,31 @@ function App() {
   };
 
   const handleChangeRValue = (event) => {
-    setRValue(event.target.value);
+    const value = event.target.value;
+    if (value.length === 0 || isRgbValid(value)) {
+      setRValue(value);
+    }
   };
 
   const handleChangeGValue = (event) => {
-    setGValue(event.target.value);
+    const value = event.target.value;
+    if (value.length === 0 || isRgbValid(value)) {
+      setGValue(value);
+    }
   };
 
   const handleChangeBValue = (event) => {
-    setBValue(event.target.value);
+    const value = event.target.value;
+    if (value.length === 0 || isRgbValid(value)) {
+      setBValue(value);
+    }
   };
 
   const handleChangeHexValue = (event) => {
-    setHexValue(event.target.value);
+    const value = event.target.value;
+    if (value.length === 0 || isHexValid(value)) {
+      setHexValue(value);
+    }
   };
 
   const handleConvertClick = () => {
