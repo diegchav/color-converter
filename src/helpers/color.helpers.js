@@ -1,13 +1,14 @@
 const isHexValid = (hexColor) => {
   hexColor = hexColor.toLowerCase();
-  const regex = /[0-9abcdef]{6}/;
+  const regex = /^[0-9abcdef]{1,6}$/;
   return regex.test(hexColor);
 };
 
 export const isHexColorValid = (hexColor) => {
   // Remove hash symbol.
   hexColor = hexColor.replace(/#/g, '');
-  return isHexValid(hexColor);
+  // Only allow 6-caracter hex colors for now.
+  return hexColor.length === 6 && isHexValid(hexColor);
 };
 
 /*
@@ -19,7 +20,7 @@ export const hexColor2Rgb = (hexColor) => {
   // Remove hash symbol.
   hexColor = hexColor.replace(/#/g, '');
 
-  if (!isHexValid(hexColor)) {
+  if (!isHexColorValid(hexColor)) {
     throw new Error(`Invalid hex color: #${hexColor}`);
   }
 
