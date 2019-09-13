@@ -7,7 +7,7 @@ import './HexColor.scss';
 
 const HexColor = ({ value, onChangeHexValue }) => (
   <div className="hex-color">
-    <InputField value={value} onChangeValue={onChangeHexValue} />
+    <InputField label="HEX" value={value} onChangeValue={onChangeHexValue} />
   </div>
 );
 

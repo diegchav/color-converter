@@ -5,8 +5,9 @@ import TextField from '@material-ui/core/TextField';
 
 import './InputField.scss';
 
-const InputField = ({ value, onChangeValue }) => (
+const InputField = ({ label = '', value, onChangeValue }) => (
   <TextField
+    label={label}
     value={value}
     variant="outlined"
     inputProps={{ 'aria-label': 'bare' }}
