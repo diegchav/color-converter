@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 
 import InputField from '../input-field/InputField';
 
+import {
+  HEX_COLOR
+} from '../../constants';
+
 import './HexColor.scss';
 
 const HexColor = ({ value, onChangeHexValue }) => (
   <div className="hex-color">
-    <InputField label="HEX" value={value} onChangeValue={onChangeHexValue} />
+    <InputField label={HEX_COLOR} value={value} onChangeValue={onChangeHexValue} />
   </div>
 );
 

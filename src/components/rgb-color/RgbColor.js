@@ -3,13 +3,19 @@ import PropTypes from 'prop-types';
 
 import InputField from '../input-field/InputField';
 
+import {
+  R_COLOR,
+  G_COLOR,
+  B_COLOR
+} from '../../constants';
+
 import './RgbColor.scss';
 
 const RgbColor = ({ r, g, b, onChangeRValue, onChangeGValue, onChangeBValue }) => (
   <div className="rgb-color">
-    <InputField label="R" value={r} onChangeValue={onChangeRValue} />
-    <InputField label="G" value={g} onChangeValue={onChangeGValue} />
-    <InputField label="B" value={b} onChangeValue={onChangeBValue} />
+    <InputField label={R_COLOR} value={r} onChangeValue={onChangeRValue} />
+    <InputField label={G_COLOR} value={g} onChangeValue={onChangeGValue} />
+    <InputField label={B_COLOR} value={b} onChangeValue={onChangeBValue} />
   </div>
 );
 
