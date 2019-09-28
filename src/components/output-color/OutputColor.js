@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -20,9 +20,9 @@ const OutputColor = ({ colorLabel, colorBg }) => {
   );
 };
 
-OutputColor.propTypes = {
-  colorLabel: PropTypes.string.isRequired,
-  colorBg: PropTypes.string.isRequired
-};
+const mapStateToProps = ({ color }) => ({
+  colorLabel: color.outputColorLabel,
+  colorBg: color.outputColorBg
+});
 
-export default OutputColor;
+export default connect(mapStateToProps)(OutputColor);

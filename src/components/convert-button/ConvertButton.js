@@ -1,20 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Button from '@material-ui/core/Button';
 
+import { convertColor } from '../../redux/color/color.actions';
+
 import './ConvertButton.scss';
 
-const ConvertButton = ({ onConvertClick }) => (
+const ConvertButton = ({ convertColor }) => (
   <div className="convert-button">
-    <Button size="small" color="primary" variant="contained" onClick={onConvertClick}>
+    <Button size="small" color="primary" variant="contained" onClick={convertColor}>
       Convert
     </Button>
   </div>
 );
 
-ConvertButton.propTypes = {
-  onConvertClick: PropTypes.func.isRequired
-};
+const mapDispatchToProps = dispatch => ({
+  convertColor: () => dispatch(convertColor())
+});
 
-export default ConvertButton;
+export default connect(null, mapDispatchToProps)(ConvertButton);

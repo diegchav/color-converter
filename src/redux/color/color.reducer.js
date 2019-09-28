@@ -1,6 +1,6 @@
 import ColorActionTypes from './color.types';
 
-import { setInputColor } from './color.utils';
+import { setInputColor, convertColor } from './color.utils';
 
 import {
   randomRgbColor,
@@ -22,7 +22,9 @@ const INITIAL_STATE = {
   rValue: r,
   gValue: g,
   bValue: b,
-  hexValue: hex
+  hexValue: hex,
+  outputColorLabel: '#' + hex,
+  outputColorBg: '#' + hex
 };
 
 const colorReducer = (state = INITIAL_STATE, action) => {
@@ -52,6 +54,11 @@ const colorReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         hexValue: (value.length === 0 || isHexValid(value)) ? value : state.hexValue
+      };
+    case ColorActionTypes.CONVERT_COLOR:
+      return {
+        ...state,
+        ...convertColor(state)
       };
     default:
       return state;

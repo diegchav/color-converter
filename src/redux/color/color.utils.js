@@ -1,5 +1,7 @@
 import {
+  isHexColorValid,
   hexColor2Rgb,
+  isRgbColorValid,
   rgbColor2Hex
 } from '../../helpers/color.helpers';
 
@@ -34,5 +36,44 @@ export const setInputColor = (state, newInputColor) => {
       console.error(e.message);
       return { rValue, gValue, bValue, hexValue, inputColor };
     }
+  }
+};
+
+const convertRgbColor = (r, g, b) => {
+  if (!isRgbColorValid(r, g, b)) {
+    return {
+      outputColorLabel: 'Invalid',
+      outputColorBg: '#fff'
+    };
+  } else {
+    const hexColor = '#' + rgbColor2Hex(r, g, b);
+    return {
+      outputColorLabel: hexColor,
+      outputColorBg: hexColor
+    };
+  }
+};
+
+const convertHexColor = (color) => {
+  if (!isHexColorValid(color)) {
+    return {
+      outputColorLabel: 'Invalid',
+      outputColorBg: '#fff'
+    };
+  } else {
+    const {r, g, b} = hexColor2Rgb(color);
+    return {
+      outputColorLabel: `(${r}, ${g}, ${b})`,
+      outputColorBg: '#' + color
+    };
+  }
+};
+
+export const convertColor = state => {
+  const { inputColor, rValue, gValue, bValue, hexValue } = state;
+  if (inputColor === INPUT_RGB) {
+    return convertRgbColor(rValue, gValue, bValue);
+  } else if (inputColor === INPUT_HEX) {
+    return convertHexColor(hexValue);
   }
 };

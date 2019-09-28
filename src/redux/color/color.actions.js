@@ -24,3 +24,7 @@ export const changeHexValue = hexValue => ({
   type: ColorActionTypes.CHANGE_HEX_VALUE,
   payload: hexValue
 });
+
+export const convertColor = () => ({
+  type: ColorActionTypes.CONVERT_COLOR
+});
