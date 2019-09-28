@@ -42,7 +42,6 @@ Here are some screenshots of the app taken on a macOS Mojave 10.14.5
 
 ## TODO items
 
-- Change input field border color when input is invalid
 - Copy to clipboard
 - Build for production
 - Add icons for MacOS and Windows
