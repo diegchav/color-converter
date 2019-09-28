@@ -11,7 +11,7 @@ export const changeRValue = rValue => ({
 });
 
 export const changeGValue = gValue => ({
-  type: ColorActionTypes.CHANGE_R_VALUE,
+  type: ColorActionTypes.CHANGE_G_VALUE,
   payload: gValue
 });
 

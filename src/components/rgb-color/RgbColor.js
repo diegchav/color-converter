@@ -1,7 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import InputField from '../input-field/InputField';
+
+import {
+  changeRValue,
+  changeGValue,
+  changeBValue,
+} from '../../redux/color/color.actions';
 
 import {
   R_COLOR,
@@ -11,21 +17,31 @@ import {
 
 import './RgbColor.scss';
 
-const RgbColor = ({ r, g, b, onChangeRValue, onChangeGValue, onChangeBValue }) => (
+const RgbColor = ({
+  rValue,
+  gValue,
+  bValue,
+  changeRValue,
+  changeGValue,
+  changeBValue
+}) => (
   <div className="rgb-color">
-    <InputField label={R_COLOR} value={r} onChangeValue={onChangeRValue} />
-    <InputField label={G_COLOR} value={g} onChangeValue={onChangeGValue} />
-    <InputField label={B_COLOR} value={b} onChangeValue={onChangeBValue} />
+    <InputField label={R_COLOR} value={rValue} onChangeValue={changeRValue} />
+    <InputField label={G_COLOR} value={gValue} onChangeValue={changeGValue} />
+    <InputField label={B_COLOR} value={bValue} onChangeValue={changeBValue} />
   </div>
 );
 
-RgbColor.propTypes = {
-  r: PropTypes.string.isRequired,
-  g: PropTypes.string.isRequired,
-  b: PropTypes.string.isRequired,
-  onChangeRValue: PropTypes.func.isRequired,
-  onChangeGValue: PropTypes.func.isRequired,
-  onChangeBValue: PropTypes.func.isRequired
-};
+const mapStateToProps = ({ color: { rValue, gValue, bValue } }) => ({
+  rValue,
+  gValue,
+  bValue
+});
 
-export default RgbColor;
+const mapDispatchToProps = dispatch => ({
+  changeRValue: value => dispatch(changeRValue(value)),
+  changeGValue: value => dispatch(changeGValue(value)),
+  changeBValue: value => dispatch(changeBValue(value))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RgbColor);

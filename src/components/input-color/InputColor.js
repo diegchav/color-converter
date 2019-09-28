@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import RgbColor from '../rgb-color/RgbColor';
 import HexColor from '../hex-color/HexColor';
@@ -11,46 +11,21 @@ import {
 } from '../../constants';
 
 const InputColor = ({
-  inputType,
-  rValue,
-  onChangeRValue,
-  gValue,
-  onChangeGValue,
-  bValue,
-  onChangeBValue,
-  hexValue,
-  onChangeHexValue
+  inputColor,
 }) => {
   return (
     <div className="input-color">
-      {inputType === INPUT_RGB
-        ? <RgbColor
-            r={rValue}
-            g={gValue}
-            b={bValue}
-            onChangeRValue={onChangeRValue}
-            onChangeGValue={onChangeGValue}
-            onChangeBValue={onChangeBValue}
-          />
-        : <HexColor
-            value={hexValue}
-            onChangeHexValue={onChangeHexValue}
-          />
+      {
+        inputColor === INPUT_RGB
+        ? <RgbColor />
+        : <HexColor />
       }
     </div>
   );
 };
 
-InputColor.propTypes = {
-  inputType: PropTypes.string.isRequired,
-  rValue: PropTypes.string.isRequired,
-  onChangeRValue: PropTypes.func.isRequired,
-  gValue: PropTypes.string.isRequired,
-  onChangeGValue: PropTypes.func.isRequired,
-  bValue: PropTypes.string.isRequired,
-  onChangeBValue: PropTypes.func.isRequired,
-  hexValue: PropTypes.string.isRequired,
-  onChangeHexValue: PropTypes.func.isRequired
-};
+const mapStateToProps = ({ color }) => ({
+  inputColor: color.inputColor
+});
 
-export default InputColor;
+export default connect(mapStateToProps)(InputColor);

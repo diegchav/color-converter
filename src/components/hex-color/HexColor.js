@@ -1,7 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import InputField from '../input-field/InputField';
+
+import {
+  changeHexValue
+} from '..//../redux/color/color.actions';
 
 import {
   HEX_COLOR
@@ -9,15 +13,18 @@ import {
 
 import './HexColor.scss';
 
-const HexColor = ({ value, onChangeHexValue }) => (
+const HexColor = ({ hexValue, changeHexValue }) => (
   <div className="hex-color">
-    <InputField label={HEX_COLOR} value={value} onChangeValue={onChangeHexValue} />
+    <InputField label={HEX_COLOR} value={hexValue} onChangeValue={changeHexValue} />
   </div>
 );
 
-HexColor.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChangeHexValue: PropTypes.func.isRequired
-};
+const mapStateToProps = ({ color: { hexValue }}) => ({
+  hexValue
+});
 
-export default HexColor;
+const mapDispatchToProps = dispatch => ({
+  changeHexValue: value => dispatch(changeHexValue(value))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HexColor);

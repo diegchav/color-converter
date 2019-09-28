@@ -67,26 +67,6 @@ const App = ({
     }
   };
 
-  const handleChangeRValue = (event) => {
-    const value = event.target.value;
-    changeRValue(value);
-  };
-
-  const handleChangeGValue = (event) => {
-    const value = event.target.value;
-    changeBValue(value);
-  };
-
-  const handleChangeBValue = (event) => {
-    const value = event.target.value;
-    changeGValue(value);
-  };
-
-  const handleChangeHexValue = (event) => {
-    const value = event.target.value;
-    changeHexValue(value);
-  };
-
   const handleConvertClick = () => {
     if (inputColor === INPUT_RGB) {
       convertRgbColor(rValue, gValue, bValue);
@@ -135,16 +115,7 @@ const App = ({
   return (
     <div className="app">
       <ColorSwitcher currentColor={inputColor} onSwitchColor={handleSwitchColor} />
-      <InputColor
-        inputType={inputColor}
-        rValue={rValue}
-        onChangeRValue={handleChangeRValue}
-        gValue={gValue}
-        onChangeGValue={handleChangeGValue}
-        bValue={bValue}
-        onChangeBValue={handleChangeBValue}
-        hexValue={hexValue}
-        onChangeHexValue={handleChangeHexValue} />
+      <InputColor />
       <ConvertButton onConvertClick={handleConvertClick} />
       <OutputColor
         colorLabel={outputColorLabel}
