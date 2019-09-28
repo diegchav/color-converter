@@ -1,5 +1,7 @@
 import ColorActionTypes from './color.types';
 
+import { setInputColor } from './color.utils';
+
 import {
   randomRgbColor,
   rgbColor2Hex,
@@ -29,7 +31,7 @@ const colorReducer = (state = INITIAL_STATE, action) => {
     case ColorActionTypes.SWITCH_INPUT_COLOR:
       return {
         ...state,
-        inputColor: value
+        ...setInputColor(state, value)
       };
     case ColorActionTypes.CHANGE_R_VALUE:
       return {

@@ -1,25 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import './ColorSwitcher.scss';
+import { switchInputColor } from '../../redux/color/color.actions';
 
 import {
   INPUT_RGB,
   INPUT_HEX
 } from '../../constants';
 
-const ColorSwitcher = ({ currentColor, onSwitchColor }) => {
-  const tabValue = currentColor === INPUT_RGB ? 0 : 1;
+import './ColorSwitcher.scss';
+
+const ColorSwitcher = ({ inputColor, switchInputColor }) => {
+  const tabValue = inputColor === INPUT_RGB ? 0 : 1;
 
   const handleTabChange = (event, newValue) => {
     if (newValue === 0) {
-      onSwitchColor(INPUT_RGB);
+      switchInputColor(INPUT_RGB);
     } else if (newValue === 1) {
-      onSwitchColor(INPUT_HEX);
+      switchInputColor(INPUT_HEX);
     }
   };
 
@@ -41,9 +43,12 @@ const ColorSwitcher = ({ currentColor, onSwitchColor }) => {
   );
 };
 
-ColorSwitcher.propTypes = {
-  currentColor: PropTypes.string.isRequired,
-  onSwitchColor: PropTypes.func.isRequired
-};
+const mapStateToProps = ({ color }) => ({
+  inputColor: color.inputColor
+});
 
-export default ColorSwitcher;
+const mapDispatchToProps = dispatch => ({
+  switchInputColor: inputColor => dispatch(switchInputColor(inputColor))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ColorSwitcher);

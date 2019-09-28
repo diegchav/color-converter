@@ -7,14 +7,6 @@ import ConvertButton from './components/convert-button/ConvertButton';
 import OutputColor from './components/output-color/OutputColor';
 
 import {
-  switchInputColor,
-  changeRValue,
-  changeGValue,
-  changeBValue,
-  changeHexValue
-} from './redux/color/color.actions';
-
-import {
   isHexColorValid,
   hexColor2Rgb,
   isRgbColorValid,
@@ -30,15 +22,10 @@ import './App.css';
 
 const App = ({
   inputColor,
-  switchInputColor,
   rValue,
-  changeRValue,
   gValue,
-  changeBValue,
   bValue,
-  changeGValue,
   hexValue,
-  changeHexValue
 }) => {
   // When converting from hex to rgb, output color label and bg will be different.
   const [outputColorLabel, setOutputColorLabel] = useState('#' + hexValue);
@@ -75,46 +62,9 @@ const App = ({
     }
   };
 
-  const setInvalidInput = () => {
-    changeRValue('');
-    changeBValue('');
-    changeGValue('');
-    changeHexValue('');
-    setOutputColorLabel('No color');
-    setOutputColorBg('#fff');
-  };
-
-  const handleSwitchColor = (inputColor) => {
-    if (inputColor === INPUT_RGB) {
-      try {
-        const { r, g, b } = hexColor2Rgb(hexValue);
-        convertRgbColor(r, g, b);
-        changeRValue(r);
-        changeBValue(g);
-        changeGValue(b);
-        changeHexValue('');
-      } catch (e) {
-        setInvalidInput();
-      }
-    } else if (inputColor === INPUT_HEX) {
-      try {
-        const hex = rgbColor2Hex(rValue, gValue, bValue);
-        convertHexColor(hex);
-        changeHexValue(hex);
-        changeRValue('');
-        changeBValue('');
-        changeGValue('');
-      } catch (e) {
-        setInvalidInput();
-      }
-    }
-
-    switchInputColor(inputColor);
-  };
-
   return (
     <div className="app">
-      <ColorSwitcher currentColor={inputColor} onSwitchColor={handleSwitchColor} />
+      <ColorSwitcher />
       <InputColor />
       <ConvertButton onConvertClick={handleConvertClick} />
       <OutputColor
@@ -132,12 +82,4 @@ const mapStateToProps = ({ color }) => ({
   hexValue: color.hexValue
 });
 
-const mapDispatchToProps = dispatch => ({
-  switchInputColor: inputColor => dispatch(switchInputColor(inputColor)),
-  changeRValue: value => dispatch(changeRValue(value)),
-  changeBValue: value => dispatch(changeGValue(value)),
-  changeGValue: value => dispatch(changeBValue(value)),
-  changeHexValue: value => dispatch(changeHexValue(value))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
