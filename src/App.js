@@ -6,16 +6,19 @@ import InputColor from './components/input-color/InputColor';
 import ConvertButton from './components/convert-button/ConvertButton';
 import OutputColor from './components/output-color/OutputColor';
 
-import { switchInputColor } from './redux/color/color.actions';
+import {
+  switchInputColor,
+  changeRValue,
+  changeGValue,
+  changeBValue,
+  changeHexValue
+} from './redux/color/color.actions';
 
 import {
   isHexColorValid,
   hexColor2Rgb,
   isRgbColorValid,
-  rgbColor2Hex,
-  randomRgbColor,
-  isHexValid,
-  isRgbValid
+  rgbColor2Hex
 } from './helpers/color.helpers';
 
 import {
@@ -25,19 +28,21 @@ import {
 
 import './App.css';
 
-const App = ({ inputColor, switchInputColor }) => {
-  // Generate a random rgb color on load.
-  const { r, g, b } = randomRgbColor();
-  const hex = rgbColor2Hex(r, g, b);
-
-  const [rValue, setRValue] = useState(r);
-  const [gValue, setGValue] = useState(g);
-  const [bValue, setBValue] = useState(b);
-  const [hexValue, setHexValue] = useState('');
-
+const App = ({
+  inputColor,
+  switchInputColor,
+  rValue,
+  changeRValue,
+  gValue,
+  changeBValue,
+  bValue,
+  changeGValue,
+  hexValue,
+  changeHexValue
+}) => {
   // When converting from hex to rgb, output color label and bg will be different.
-  const [outputColorLabel, setOutputColorLabel] = useState('#' + hex);
-  const [outputColorBg, setOutputColorBg] = useState('#' + hex);
+  const [outputColorLabel, setOutputColorLabel] = useState('#' + hexValue);
+  const [outputColorBg, setOutputColorBg] = useState('#' + hexValue);
 
   const convertRgbColor = (r, g, b) => {
     if (!isRgbColorValid(r, g, b)) {
@@ -64,30 +69,22 @@ const App = ({ inputColor, switchInputColor }) => {
 
   const handleChangeRValue = (event) => {
     const value = event.target.value;
-    if (value.length === 0 || isRgbValid(value)) {
-      setRValue(value);
-    }
+    changeRValue(value);
   };
 
   const handleChangeGValue = (event) => {
     const value = event.target.value;
-    if (value.length === 0 || isRgbValid(value)) {
-      setGValue(value);
-    }
+    changeBValue(value);
   };
 
   const handleChangeBValue = (event) => {
     const value = event.target.value;
-    if (value.length === 0 || isRgbValid(value)) {
-      setBValue(value);
-    }
+    changeGValue(value);
   };
 
   const handleChangeHexValue = (event) => {
     const value = event.target.value;
-    if (value.length === 0 || isHexValid(value)) {
-      setHexValue(value);
-    }
+    changeHexValue(value);
   };
 
   const handleConvertClick = () => {
@@ -99,10 +96,10 @@ const App = ({ inputColor, switchInputColor }) => {
   };
 
   const setInvalidInput = () => {
-    setRValue('');
-    setGValue('');
-    setBValue('');
-    setHexValue('');
+    changeRValue('');
+    changeBValue('');
+    changeGValue('');
+    changeHexValue('');
     setOutputColorLabel('No color');
     setOutputColorBg('#fff');
   };
@@ -112,10 +109,10 @@ const App = ({ inputColor, switchInputColor }) => {
       try {
         const { r, g, b } = hexColor2Rgb(hexValue);
         convertRgbColor(r, g, b);
-        setRValue(r);
-        setGValue(g);
-        setBValue(b);
-        setHexValue('');
+        changeRValue(r);
+        changeBValue(g);
+        changeGValue(b);
+        changeHexValue('');
       } catch (e) {
         setInvalidInput();
       }
@@ -123,10 +120,10 @@ const App = ({ inputColor, switchInputColor }) => {
       try {
         const hex = rgbColor2Hex(rValue, gValue, bValue);
         convertHexColor(hex);
-        setHexValue(hex);
-        setRValue('');
-        setGValue('');
-        setBValue('');
+        changeHexValue(hex);
+        changeRValue('');
+        changeBValue('');
+        changeGValue('');
       } catch (e) {
         setInvalidInput();
       }
@@ -157,11 +154,19 @@ const App = ({ inputColor, switchInputColor }) => {
 }
 
 const mapStateToProps = ({ color }) => ({
-  inputColor: color.inputColor
+  inputColor: color.inputColor,
+  rValue: color.rValue,
+  gValue: color.gValue,
+  bValue: color.bValue,
+  hexValue: color.hexValue
 });
 
 const mapDispatchToProps = dispatch => ({
-  switchInputColor: inputColor => dispatch(switchInputColor(inputColor))
+  switchInputColor: inputColor => dispatch(switchInputColor(inputColor)),
+  changeRValue: value => dispatch(changeRValue(value)),
+  changeBValue: value => dispatch(changeGValue(value)),
+  changeGValue: value => dispatch(changeBValue(value)),
+  changeHexValue: value => dispatch(changeHexValue(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
