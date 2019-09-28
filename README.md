@@ -5,7 +5,7 @@ Simple desktop application to convert between rgb and hex color formats.
 ## Technologies
 
 - React
-- React Hooks
+- Redux
 - Material UI
 - Electron
 
